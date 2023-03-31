@@ -8,6 +8,9 @@ app = flask.Flask(__name__)
 @app.route("/")
 def index():
     version = flask.request.args.get("urllib_version")
+    if version != "2" and version != "3":
+        print("Invalid urllib version provided")
+        return
     url = flask.request.args.get("url")
     return fetch_website(version, url)
 
